@@ -6,8 +6,9 @@ import java.util.Scanner;
 public class MinesweeperGame {
     public static final int BOARD_SIZE = 10;
     public static final int NUM_MINES = 10;
-    public static final char UNREVEALED_CELL = '■';
+    public static final char UNREVEALED_CELL = '\u25A0';    
     public static final char MINE_CELL = '\u25CF';
+   
 
     public char[][] grid;
     public boolean[][] revealed;
