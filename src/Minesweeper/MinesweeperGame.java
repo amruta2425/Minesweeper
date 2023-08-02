@@ -84,6 +84,7 @@ public class MinesweeperGame {
             printGrid();
             System.out.println();
             System.out.println("Boom! Game Over!");
+            System.out.println("Better Luck Next Time!");
             System.exit(0);
         } else if (remainingCells == NUM_MINES) {
             printGrid();
