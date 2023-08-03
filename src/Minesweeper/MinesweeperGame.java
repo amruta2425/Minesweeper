@@ -1,5 +1,6 @@
 package Minesweeper;
 
+//Import Functions
 import java.util.Random;
 import java.util.Scanner;
 
@@ -14,17 +15,21 @@ public class MinesweeperGame {
     public boolean[][] revealed;
     public int remainingCells;
 
+    // Constructor 
     public MinesweeperGame() {
         grid = new char[BOARD_SIZE][BOARD_SIZE];
         revealed = new boolean[BOARD_SIZE][BOARD_SIZE];
         remainingCells = BOARD_SIZE * BOARD_SIZE;
-
+        
+        // Initialize the game grid with unrevealed cells
         initializeGrid();
+        
+     // Randomly place mines on the grid
         placeMines();
     }
     
     public void printInstructions() {
-        System.out.println("\n              Welcome to Minesweeper!      \n \n" +
+        System.out.println("\n              Welcome to Minesweeper!       \n \n" +
                 "1. To play the game, enter the row and column numbers of the cell you want to reveal.   \n" +
                 "2. Rows and columns are numbered from 0 to 9.\n" +
                 "3. For example, to reveal the cell in the first row and second column, enter '0 1'.\n" +
