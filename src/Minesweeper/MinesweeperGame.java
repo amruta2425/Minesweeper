@@ -28,6 +28,7 @@ public class MinesweeperGame {
         placeMines();
     }
     
+ // Function to print instructions 
     public void printInstructions() {
         System.out.println("\n              Welcome to Minesweeper!       \n \n" +
                 "1. To play the game, enter the row and column numbers of the cell you want to reveal.   \n" +
@@ -39,7 +40,7 @@ public class MinesweeperGame {
     }
 
     
-
+    // Function to initialize the game grid with unrevealed cells
     public void initializeGrid() {
         //System.out.println("\n      Welcome To the Minesweeper Game ");
         for (int i = 0; i < BOARD_SIZE; i++) {
@@ -49,8 +50,10 @@ public class MinesweeperGame {
             }
         }
     }
-
+    
+    // Function to randomly place mines on the game grid
     public void placeMines() {
+    	
         Random random = new Random();
         int minesPlaced = 0;
 
@@ -65,6 +68,7 @@ public class MinesweeperGame {
         }
     }
 
+    // Function to count the number of adjacent mines around a given cell
     public int countAdjacentMines(int row, int col) {
         int count = 0;
         for (int i = row - 1; i <= row + 1; i++) {
@@ -76,29 +80,35 @@ public class MinesweeperGame {
         }
         return count;
     }
-
+    // Function to reveal a cell
     public void revealCell(int row, int col) {
+    	
+    	// If the cell has already been revealed, return and do nothing
         if (revealed[row][col]) {
             return;
         }
-
+        // Mark the cell as revealed and reduce the count of remaining cells
         revealed[row][col] = true;
         remainingCells--;
-
+        
+        // If the revealed cell contains a mine, the game ends.
         if (grid[row][col] == MINE_CELL) {
             printGrid();
             System.out.println();
             System.out.println("Boom! Game Over!");
             System.out.println("Better Luck Next Time!");
             System.exit(0);
+            
         } else if (remainingCells == NUM_MINES) {
             printGrid();
             System.out.println("Congratulations! You Win!");
             System.exit(0);
+            
         } else {
             int adjacentMines = countAdjacentMines(row, col);
             grid[row][col] = (char) (adjacentMines + '0');
-
+            
+            //recursively revelaing adjacent cells
             if (adjacentMines == 0) {
                 for (int i = row - 1; i <= row + 1; i++) {
                     for (int j = col - 1; j <= col + 1; j++) {
@@ -112,12 +122,14 @@ public class MinesweeperGame {
     }
 
     public void printGrid() {
+    	 // Print the column headers
         System.out.print("  ");
         for (int i = 0; i < BOARD_SIZE; i++) {
             System.out.print(i + " ");
         }
         System.out.println();
-
+        
+     // Print the rows and cells of the game grid
         for (int i = 0; i < BOARD_SIZE; i++) {
             System.out.print(i + " ");
             for (int j = 0; j < BOARD_SIZE; j++) {
@@ -168,8 +180,6 @@ public class MinesweeperGame {
             }
         }
     }
-
-
     public boolean isValidCoordinate(int coordinate) {
         return coordinate >= 0 && coordinate < BOARD_SIZE;
     }
